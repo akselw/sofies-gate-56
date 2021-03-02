@@ -24,15 +24,6 @@ build config siteMetadata =
     , content =
         Sitemap.build config
             (siteMetadata
-                |> List.filter
-                    (\page ->
-                        case page.frontmatter of
-                            Article articleData ->
-                                not articleData.draft
-
-                            _ ->
-                                True
-                    )
                 |> List.map
                     (\page ->
                         { path = PagePath.toString page.path, lastMod = Nothing }

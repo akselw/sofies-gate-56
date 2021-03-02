@@ -1,6 +1,6 @@
 module Index exposing (view)
 
-import Data.Author
+import Data.Styremedlem
 import Date
 import Element exposing (Element)
 import Element.Border
@@ -24,19 +24,6 @@ view posts =
                 (\( path, metadata ) ->
                     case metadata of
                         Metadata.Page meta ->
-                            Nothing
-
-                        Metadata.Author _ ->
-                            Nothing
-
-                        Metadata.Article meta ->
-                            if meta.draft then
-                                Nothing
-
-                            else
-                                Just ( path, meta )
-
-                        Metadata.BlogIndex ->
                             Nothing
                 )
             |> List.sortWith postPublishDateDescending
@@ -112,8 +99,8 @@ postPreview post =
         ]
         [ title post.title
         , Element.row [ Element.spacing 10, Element.centerX ]
-            [ Data.Author.view [ Element.width (Element.px 40) ] post.author
-            , Element.text post.author.name
+            [ Data.Styremedlem.view [ Element.width (Element.px 40) ] post.author
+            , Element.text post.author.navn
             , Element.text "•"
             , Element.text (post.published |> Date.format "MMMM ddd, yyyy")
             ]
